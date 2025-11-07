@@ -14,4 +14,4 @@ class DatabaseConnection {
   }
 }
 
-export default DatabaseConnection;
+export default DatabaseConnection.getInstance();
