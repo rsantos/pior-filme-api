@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/award-intervals", (_req, res) => {
   res
+    .status(200)
     .json({
       min: [
         {
@@ -28,8 +29,7 @@ router.get("/award-intervals", (_req, res) => {
           followingWin: 2010,
         },
       ],
-    })
-    .status(200);
+    });
 });
 
 export default router;

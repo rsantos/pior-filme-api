@@ -4,7 +4,13 @@ import MovieService from '../services/movie.service';
 
 
 export default class Seed {
-  static async run(filePathCSV?: string) {
+  private movieService: MovieService;
+
+  constructor() {
+    this.movieService = new MovieService();
+  }
+
+  async run(filePathCSV?: string) {
     const filePath = filePathCSV ? path.resolve(filePathCSV) : path.resolve('src/data/movies.csv');
 
     if (!fs.existsSync(filePath)) {
@@ -20,7 +26,7 @@ export default class Seed {
         continue;
       }
 
-      MovieService.createMovie({
+      this.movieService.createMovie({
         year: Number(year),
         title,
         studios,
