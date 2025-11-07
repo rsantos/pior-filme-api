@@ -7,8 +7,11 @@ const app = express();
 
 app.use(express.json());
 
-runMigrations();
-
 app.use('/producers', producersRouter);
+
+export async function initializeApp() {
+  runMigrations();
+  return app;
+}
 
 export default app;

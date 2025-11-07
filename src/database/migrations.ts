@@ -14,6 +14,4 @@ export function runMigrations() {
       winner BOOLEAN NOT NULL
     );
   `);
-
-  console.log("Migrations have been run successfully.");
 }

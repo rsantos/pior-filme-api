@@ -1,8 +1,13 @@
+import { initializeApp } from "../app";
 import request from "supertest";
-import app from "../app";
 
 
 describe("Producer", () => {
+  let app: any;
+  beforeAll(async () => {
+    app = await initializeApp();
+  })
+
   it("should fetch producers with award intervals", async () => {
     const response = await request(app)
       .get("/producers/award-intervals")
