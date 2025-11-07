@@ -1,11 +1,14 @@
 import express from 'express';
-import producerRouter from './routes/producer.router';
+import producersRouter from './routes/producers.router';
+import { runMigrations } from './database/migrations';
 
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/producers', producerRouter);
+runMigrations();
+
+app.use('/producers', producersRouter);
 
 export default app;
