@@ -1,18 +1,4 @@
-import express from 'express';
-
-import { Router, Request, Response } from 'express';
-
-const app = express();
-
-const router = Router();
-
-app.use(express.json());
-
-router.get('/', (_: Request, res: Response) => {
-  res.send('Hello, World!');
-});
-
-app.use('/', router);
+import app from './app';
 
 const PORT = process.env.PORT || 3000;
 
