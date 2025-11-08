@@ -1,4 +1,6 @@
+import ProducerRepository from '../repositories/producer.repository';
 import MovieRepository from '../repositories/movie.repository';
+import { Producer } from '../models/producer.model';
 
 interface AwardInterval {
   min: Array<{
@@ -17,9 +19,11 @@ interface AwardInterval {
 
 export default class ProducerService {
   private movieRepository: MovieRepository;
+  private producerRepository: ProducerRepository;
 
   constructor() {
     this.movieRepository = new MovieRepository();
+    this.producerRepository = new ProducerRepository();
   }
 
   awardIntervals(): AwardInterval {
@@ -47,5 +51,15 @@ export default class ProducerService {
         },
       ],
     };
+  }
+
+  createManyProducers(names: string): Producer[] {
+    const producers: Producer[] = [];
+    const producerNames = names.split(/\s*(?:,|and)\s*/i).filter(Boolean);
+    for (const name of producerNames) {
+      const producer = this.producerRepository.findOrCreate(name.trim());
+      producers.push(producer);
+    }
+    return producers;
   }
 }
