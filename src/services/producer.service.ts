@@ -55,7 +55,7 @@ export default class ProducerService {
 
   createManyProducers(names: string): Producer[] {
     const producers: Producer[] = [];
-    const producerNames = names.split(/\s*(?:,|and)\s*/i).filter(Boolean);
+    const producerNames = names.split(/\s*(?:,|\band\b|&)\s*/i).filter(Boolean);
     for (const name of producerNames) {
       const producer = this.producerRepository.findOrCreate(name.trim());
       producers.push(producer);
