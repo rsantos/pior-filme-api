@@ -11,7 +11,7 @@ export default class Seed {
   }
 
   async run(filePathCSV?: string) {
-    const filePath = filePathCSV ? path.resolve(filePathCSV) : path.resolve('src/data/movies.csv');
+    const filePath = filePathCSV ? path.resolve(filePathCSV) : path.resolve(__dirname, 'database.csv');
 
     if (!fs.existsSync(filePath)) {
       console.warn(`Seed file not found at path: ${filePath}`);

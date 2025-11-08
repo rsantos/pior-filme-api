@@ -8,4 +8,5 @@ export default {
   transform: {
     ...tsJestTransformCfg,
   },
+  testMatch: ["**/__tests__/**/*.spec.(ts)"],
 };

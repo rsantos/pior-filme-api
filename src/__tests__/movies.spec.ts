@@ -5,7 +5,7 @@ describe("Movies", () => {
   let app: any;
   beforeAll(async () => {
     app = await initializeApp({
-      seedFilePathCSV: "src/__tests__/fixtures/movielist.csv",
+      seedFilePathCSV: "src/__tests__/fixtures/database.csv",
     });
   });
 

@@ -9,8 +9,8 @@
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "build": "tsc && copyfiles -u 1 src/database/*.csv dist/",
+    "start": "cd dist && node server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "@types/express": "^5.0.5",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
+    "copyfiles": "^2.4.1",
     "jest": "^30.2.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
