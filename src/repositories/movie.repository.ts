@@ -4,13 +4,7 @@ import { Movie } from '../models/movie.model';
 export default class MovieRepository {
   findAll(): Movie[] {
     const stmt = db.prepare(`
-      SELECT m.id,
-              m.year,
-              m.title,
-              m.studios,
-              m.winner,
-              p.id as producer_id,
-              p.name as producer_name
+      SELECT m.id, m.year, m.title, m.studios, m.winner, p.id as producer_id, p.name as producer_name
         FROM movies as m
         JOIN movie_producers as mp ON m.id = mp.movie_id
         JOIN producers as p ON mp.producer_id = p.id
@@ -22,13 +16,7 @@ export default class MovieRepository {
 
   findWinners(): Movie[] {
     const stmt = db.prepare(`
-      SELECT m.id,
-              m.year,
-              m.title,
-              m.studios,
-              m.winner,
-              p.id as producer_id,
-              p.name as producer_name
+      SELECT m.id, m.year, m.title, m.studios, m.winner, p.id as producer_id, p.name as producer_name
         FROM movies as m
         JOIN movie_producers as mp ON m.id = mp.movie_id
         JOIN producers as p ON mp.producer_id = p.id
