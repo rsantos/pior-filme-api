@@ -127,8 +127,8 @@ O projeto utiliza SQLite3 com Better-SQLite3 como driver. O banco de dados é cr
 
 ```
 src/
-├── __tests__/          # Testes de integração
-├── controllers/        # Controladores da API
+├── __tests__/         # Testes de integração
+├── controllers/       # Controladores da API
 ├── database/          # Configuração e dados do banco
 ├── models/            # Modelos de dados
 ├── repositories/      # Camada de acesso aos dados
