@@ -5,6 +5,10 @@ export default class MovieService {
     return MovieModel.findAll();
   }
 
+  listWinners(): Movie[] {
+    return MovieModel.find('winner = ?', [1]);
+  }
+
   createMovie(data: Omit<Movie, 'id'>): Movie {
     return MovieModel.create(data);
   }

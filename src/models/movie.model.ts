@@ -23,6 +23,18 @@ export const MovieModel = {
     }));
   },
 
+  find(whereClause: string, params: any[]): Movie[] {
+    const stmt = db.prepare(`SELECT * FROM movies WHERE ${whereClause}`);
+    return stmt.all(...params).map((row: any) => ({
+      id: row.id,
+      year: row.year,
+      title: row.title,
+      studios: row.studios,
+      producers: row.producers,
+      winner: row.winner === 1,
+    }));
+  },
+
   create(data: Omit<Movie, 'id'>): Movie {
     const stmt = db.prepare(`
       INSERT INTO movies (year, title, studios, producers, winner)

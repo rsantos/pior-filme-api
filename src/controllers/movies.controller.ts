@@ -12,4 +12,9 @@ export default class MovieController {
     const movies = this.movieService.listMovies();
     res.status(200).json(movies);
   }
+
+  winners = (_: Request, res: Response): void => {
+    const movies = this.movieService.listWinners();
+    res.status(200).json(movies);
+  }
 }
