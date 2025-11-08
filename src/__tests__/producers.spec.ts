@@ -18,25 +18,19 @@ describe("Producer", () => {
       min: [
         {
           producer: "Joel Silver",
-          interval: 8,
+          interval: 1,
           previousWin: 1990,
-          followingWin: 1998,
-        },
-        {
-          producer: "Matthew Vaughn",
-          interval: 8,
-          previousWin: 2002,
-          followingWin: 2010,
-        },
+          followingWin: 1991
+        }
       ],
       max: [
         {
-          producer: "Mark Wahlberg",
+          producer: "Matthew Vaughn",
           interval: 13,
-          previousWin: 1997,
-          followingWin: 2010,
-        },
-      ],
+          previousWin: 2002,
+          followingWin: 2015
+        }
+      ]
     });
   });
 });

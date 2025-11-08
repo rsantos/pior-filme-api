@@ -1,55 +1,20 @@
 import ProducerRepository from '../repositories/producer.repository';
-import MovieRepository from '../repositories/movie.repository';
-import { Producer } from '../models/producer.model';
+import { AwardsIntervalResult, Producer } from '../models/producer.model';
 
-interface AwardInterval {
-  min: Array<{
-    producer: string;
-    interval: number;
-    previousWin: number;
-    followingWin: number;
-  }>;
-  max: Array<{
-    producer: string;
-    interval: number;
-    previousWin: number;
-    followingWin: number;
-  }>;
-}
 
 export default class ProducerService {
-  private movieRepository: MovieRepository;
   private producerRepository: ProducerRepository;
 
   constructor() {
-    this.movieRepository = new MovieRepository();
     this.producerRepository = new ProducerRepository();
   }
 
-  awardIntervals(): AwardInterval {
+  awardIntervals(): AwardsIntervalResult {
+    const minIntervals = this.producerRepository.calculateAwardIntervals('min');
+    const maxIntervals = this.producerRepository.calculateAwardIntervals('max');
     return {
-      min: [
-        {
-          producer: "Joel Silver",
-          interval: 8,
-          previousWin: 1990,
-          followingWin: 1998,
-        },
-        {
-          producer: "Matthew Vaughn",
-          interval: 8,
-          previousWin: 2002,
-          followingWin: 2010,
-        },
-      ],
-      max: [
-        {
-          producer: "Mark Wahlberg",
-          interval: 13,
-          previousWin: 1997,
-          followingWin: 2010,
-        },
-      ],
+      min: minIntervals,
+      max: maxIntervals,
     };
   }
 
