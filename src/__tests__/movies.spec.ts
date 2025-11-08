@@ -4,7 +4,9 @@ import request from "supertest";
 describe("Movies", () => {
   let app: any;
   beforeAll(async () => {
-    app = await initializeApp();
+    app = await initializeApp({
+      seedFilePathCSV: "src/__tests__/fixtures/movielist.csv",
+    });
   });
 
   it("should fetch the list of movies", async () => {

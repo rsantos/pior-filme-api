@@ -5,7 +5,9 @@ import request from "supertest";
 describe("Producer", () => {
   let app: any;
   beforeAll(async () => {
-    app = await initializeApp();
+    app = await initializeApp({
+      seedFilePathCSV: "src/__tests__/fixtures/movielist.csv",
+    });
   })
 
   it("should fetch producers with award intervals", async () => {
