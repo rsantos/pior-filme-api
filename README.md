@@ -30,7 +30,12 @@ Execute o servidor em modo de desenvolvimento com hot reload:
 npm run dev
 ```
 
-O servidor será iniciado na porta `3000` (ou na porta definida na variável de ambiente `PORT`).
+O servidor será iniciado na porta `3000` (ou na porta definida na variável de ambiente `PORT`). 
+
+Então, você pode acessar a API através da URL:
+```
+http://localhost:3000
+```
 
 ### Modo Produção
 
@@ -42,6 +47,11 @@ npm run build
 2. Execute o servidor:
 ```bash
 npm start
+```
+
+3. Acesse a API em:
+```
+http://localhost:3000
 ```
 
 ## Como Rodar os Testes de Integração
@@ -70,7 +80,9 @@ Para executar com watch mode:
 npm test -- --watch
 ```
 
-## Endpoints da API
+## 📚 Endpoints da API
+
+**Base URL:** `http://localhost:3000`
 
 ### Filmes
 
