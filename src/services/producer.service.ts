@@ -1,12 +1,12 @@
 import ProducerRepository from '../repositories/producer.repository';
-import { AwardsIntervalResult, Producer } from '../models/producer.model';
+import { AwardsIntervalResult } from '../models/producer.model';
 
 
 export default class ProducerService {
   private producerRepository: ProducerRepository;
 
-  constructor() {
-    this.producerRepository = new ProducerRepository();
+  constructor(producerRepository: ProducerRepository) {
+    this.producerRepository = producerRepository;
   }
 
   awardIntervals(): AwardsIntervalResult {
@@ -16,15 +16,5 @@ export default class ProducerService {
       min: minIntervals,
       max: maxIntervals,
     };
-  }
-
-  createManyProducers(names: string): Producer[] {
-    const producers: Producer[] = [];
-    const producerNames = names.split(/\s*(?:,|\band\b|&)\s*/i).filter(Boolean);
-    for (const name of producerNames) {
-      const producer = this.producerRepository.findOrCreate(name.trim());
-      producers.push(producer);
-    }
-    return producers;
   }
 }

@@ -1,7 +1,8 @@
+import { Producer } from "src/models/producer.model";
 import { Movie } from "../models/movie.model";
 import MovieProducerRepository from '../repositories/movie-producer.repository';
 import MovieRepository from '../repositories/movie.repository';
-import ProducerService from './producer.service';
+import ProducerRepository from '../repositories/producer.repository';
 
 interface CreateMovieDTO {
   id?: number;
@@ -15,12 +16,16 @@ interface CreateMovieDTO {
 export default class MovieService {
   private movieRepository: MovieRepository;
   private movieProducerRepository: MovieProducerRepository;
-  private producerService: ProducerService;
+  private producerRepository: ProducerRepository;
 
-  constructor() {
-    this.movieRepository = new MovieRepository();
-    this.movieProducerRepository = new MovieProducerRepository();
-    this.producerService = new ProducerService();
+  constructor(
+    movieRepository: MovieRepository,
+    movieProducerRepository: MovieProducerRepository,
+    producerRepository: ProducerRepository
+  ) {
+    this.movieRepository = movieRepository;
+    this.movieProducerRepository = movieProducerRepository;
+    this.producerRepository = producerRepository;
   }
 
   listMovies(): Movie[] {
@@ -33,8 +38,18 @@ export default class MovieService {
 
   createMovie(data: CreateMovieDTO): Movie {
     const movie = this.movieRepository.create(data as Omit<CreateMovieDTO, 'producers'>);
-    const producers = data.producers ? this.producerService.createManyProducers(data.producers) : [];
+    const producers = data.producers ? this.createManyProducers(data.producers) : [];
     this.movieProducerRepository.attachProducersToMovie(movie.id!, producers.map(p => p.id!));
     return movie;
+  }
+
+  private createManyProducers(names: string): Producer[] {
+    const producers: Producer[] = [];
+    const producerNames = names.split(/\s*(?:,|\band\b|&)\s*/i).filter(Boolean);
+    for (const name of producerNames) {
+      const producer = this.producerRepository.findOrCreate(name.trim());
+      producers.push(producer);
+    }
+    return producers;
   }
 }

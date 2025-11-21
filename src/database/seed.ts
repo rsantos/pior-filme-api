@@ -6,8 +6,8 @@ import MovieService from '../services/movie.service';
 export default class Seed {
   private movieService: MovieService;
 
-  constructor() {
-    this.movieService = new MovieService();
+  constructor(movieService: MovieService) {
+    this.movieService = movieService;
   }
 
   async run(filePathCSV?: string) {
